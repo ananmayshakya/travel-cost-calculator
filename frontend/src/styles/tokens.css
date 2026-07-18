@@ -1,0 +1,19 @@
+/* design tokens — boring placeholder values, restyled properly in a later phase */
+:root {
+  --color-bg: #16171d;
+  --color-surface: #1f2028;
+  --color-text: #e5e4e7;
+  --color-text-muted: #9ca3af;
+  --color-border: #2e303a;
+  --color-accent: #4f8cff;
+
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
