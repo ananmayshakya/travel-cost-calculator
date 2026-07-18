@@ -1,5 +1,9 @@
 # Travel Cost Calculator
 
+**Live demo:** [travel-cost-calculator-rust.vercel.app](https://travel-cost-calculator-rust.vercel.app)
+
+> The backend runs on Render's free tier, which sleeps after ~15 minutes of inactivity. If the demo has been idle, the first request can take 30–50 seconds to wake it up — that's a cold start, not a bug. Subsequent requests are fast.
+
 Estimate the real fuel cost of a road trip in India — type a distance, or search a start and end point on a map and let the app work out the driving distance for you.
 
 Most mileage calculators just multiply the sticker ARAI figure by distance and call it a day. This one doesn't: ARAI numbers are lab-tested and consistently optimistic, and since India's petrol supply moved to E20 (20% ethanol blend), petrol mileage has taken an extra hit that depends on how old the car is. This app shows both the ARAI figure and a real-world estimate, and lets you adjust either.
@@ -63,6 +67,22 @@ npm test     # backend only — trip math, ethanol adjustment, fuel price cachin
 npm run lint
 npm run build
 ```
+
+## Deployment
+
+The live demo runs on:
+
+- **Frontend:** [Vercel](https://vercel.com) — root directory `frontend`, framework preset Vite
+- **Backend:** [Render](https://render.com) — root directory `backend`, `npm install --include=dev && npm run build` / `npm start`, health check on `/health`
+- **Database:** [Neon](https://neon.tech)
+
+Deploy order matters, since each side needs the other's URL:
+
+1. Deploy the backend first and note its URL.
+2. Set the frontend's `VITE_API_URL` to that backend URL and deploy (Vite bakes env vars in at build time, so this has to be set before building).
+3. Set the backend's `FRONTEND_ORIGIN` to the deployed frontend URL and redeploy, so CORS allows it.
+
+Render's free tier spins the service down after ~15 minutes idle; the first request after that takes 30–50 seconds to wake it back up.
 
 ## A couple of notes on tradeoffs
 
