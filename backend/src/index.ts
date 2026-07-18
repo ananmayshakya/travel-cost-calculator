@@ -20,6 +20,6 @@ app.use('/api', vehiclesRouter);
 app.use('/api', calculateRouter);
 app.use('/api', fuelRouter);
 
-app.listen(port, () => {
+app.listen(Number(port), '0.0.0.0', () => {
   console.log(`backend listening on port ${port}`);
 });
